@@ -89,9 +89,9 @@ def update_user(user):
         conn.commit()
         #return the user
         updated_user = get_user_by_id(user["user_id"])
-    except:
+    except Exception as e:
         conn.rollback()
-        updated_user = {}
+        print("failed to update user: ", e)
     finally:
         conn.close()
     return updated_user
